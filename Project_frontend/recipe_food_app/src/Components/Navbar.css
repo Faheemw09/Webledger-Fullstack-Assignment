@@ -1,0 +1,151 @@
+* {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+  }
+  body{
+    padding-top: 8vh; 
+  }
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 99.2vw;
+    height: 8vh;
+    border: 5px solid linear-gradient(to right, #f895bb, #fca695, #FFAE5D, #f7d569) ;
+    
+    margin: auto;
+    position: fixed; /* Add this line to make the navbar fixed */
+    top: 0; /* Position the navbar at the top of the viewport */
+    background-color: #ffffff; /* Set the background color of the fixed navbar */
+    z-index: 1000; /* Ensure the navbar appears above other content */
+  }
+  .navbar::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px; /* Set the desired border height */
+    background: linear-gradient(to right, #f895bb, #fca695, #FFAE5D, #f7d569);
+}
+  
+  .menu-icon {
+    display: none; /* Hide the menu icon by default */
+    font-size: 24px; /* Adjust icon size */
+    cursor: pointer;
+  }
+  
+  .nav-items {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 90vw;
+    height: 8vh; /* Adjust the height */
+    margin: auto;
+    position: relative; /* Add this line to maintain a relative position */
+  }
+  
+  .nav-items > h5 {
+    font-size: 15px;
+    color: black;
+  }
+  .nav-items>h5:hover {
+  
+
+
+cursor: pointer;
+  }
+  
+  button.signup-button{
+    height: 5vh;
+    width: 17vh;
+    border-radius: 10vh 10vh 10vh 10vh;
+    font-weight: bold;
+    color: #000;
+    font-size: 12px;
+    background: rgba(230, 224, 224, 0.3);
+    border: 0;
+  }
+  
+  /* Media query for small screens */
+  @media screen and (max-width: 767px) {
+    .menu-icon {
+      display: block; /* Show the menu icon on small screens */
+    }
+  
+     .nav-items {
+      display: none;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 5px;
+      right: 0;
+      width: 60vw;
+      top: 60px;
+      background-color: #5f5c5c;
+      padding: 10px;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+      border-radius: 5px;
+      color: white;
+      position: fixed;
+      z-index: 800; /* Ensure the navbar appears above other content */
+      transform: translateX(100%); /* Move the menu off-screen initially */
+    }
+   
+    .nav-items.active {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 2px;
+      background: linear-gradient(to right, #f895bb, #fca695, #FFAE5D, #f7d569);
+      width: auto;
+      height: auto;
+      position: fixed;
+      transform: translateX(0); /* Slide the menu into view */
+    }
+  
+    .nav-items > h5 {
+      font-size: 15px; /* Adjust font size for medium screens */
+      color: white;
+    }
+  
+    .nav-items > button {
+      height: 6vh;
+      width: 25vw;
+      border-radius: 10vh 10vh 10vh 10vh;
+      font-weight: bold;
+      color: #000;
+      font-size: 18px;
+      background: rgba(230, 224, 224, 0.3);
+      border: 0;
+    }
+  }
+  
+  /* Media query for medium-sized screens */
+  @media screen and (min-width: 768px) and (max-width: 1024px) {
+    .menu-icon {
+      display: none; /* Hide the menu icon on medium screens */
+    }
+  
+    .nav-items {
+      /* Add specific styles for medium-sized screens here */
+      width: 85vw;
+      margin: auto;
+      height: auto;
+    }
+  
+    .nav-items > h5 {
+      font-size: 20px;
+      color: #333;
+      /* Adjust font size for medium screens */
+    }
+  
+    button.signup-button {
+      height: 6.5vh;
+      width: 15vw;
+      border-radius: 10vh 10vh 10vh 10vh;
+      font-weight: bold;
+      color: #000;
+      font-size: 18px;
+      background: rgba(230, 224, 224, 0.3);
+      border: 0;
+    }
+  }
+  
