@@ -1,4 +1,4 @@
-import { FAILURE_REQUEST, PENDING_REQUEST, SIGNIN_SUCCESS, SIGNUP_SUCCESS } from "./ActionTypes"
+import { FAILURE_REQUEST, PENDING_REQUEST, SIGNIN_SUCCESS, SIGNUP_SUCCESS, SIGN_OUT } from "./ActionTypes"
 
 
 const initialstate={
@@ -22,6 +22,8 @@ export const reducer=(state=initialstate,{type,payload})=>{
                 case SIGNIN_SUCCESS:
                     return {...state,isLoading:false,isAuth:true,token:payload}
 
+                    case SIGN_OUT:
+                        return { ...state, isAuth: false, token: "" };
                     case FAILURE_REQUEST:
                         return {...state,isLoading:false,isError:true}
                         default:

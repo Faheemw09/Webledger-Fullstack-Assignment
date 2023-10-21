@@ -11,7 +11,7 @@ userRouter.get("/", async (req, res) => {
       
       res.status(200).json(users);
     } catch (error) {
-      res.status(500).json({ msg: "Error fetching users", error: error.message });
+      res.status(400).json({ msg: "Error fetching users", error: error.message });
     }
   });
 ////////////registering the user/////////////////////
@@ -32,7 +32,7 @@ try {
 
     
 } catch (error) {
-    res.send({msg:error.message})
+    res.status(400).res.send({msg:error.message})
 }
 
 
@@ -65,6 +65,10 @@ userRouter.post("/signin",async(req,res)=>{
         res.status(400).send({msg:error.message})
     }
 })
+
+
+
+
 
 module.exports={
     userRouter

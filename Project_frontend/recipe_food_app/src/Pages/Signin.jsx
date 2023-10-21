@@ -1,4 +1,4 @@
-import * as React from 'react';
+
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -13,6 +13,11 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Navbar from '../Components/Navbar';
+import { Signin_user } from '../Redux/AuthRedux/Action';
+import { useDispatch } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+
 
 function Copyright(props) {
   return (
@@ -27,19 +32,42 @@ function Copyright(props) {
   );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
+
 
 const defaultTheme = createTheme();
 
  function Signin() {
+  const[email,setEmail]=useState()
+  const[password,setPassword]=useState()
+  const dispatch=useDispatch()
+  const location=useLocation()
+  const navigate=useNavigate()
+  
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+
+    const obj = {
+      email,
+      password,
+    };
+
+    // Dispatch the async action and pass a callback function
+    dispatch(Signin_user(obj)).then (()=>{
+      navigate((location.state), { replace: true });
+    })
+   
+      setEmail('');
+      setPassword('');
+      alert("Sign-in Successful");
+   
   };
+
+
+
+
+
+
+  
 
   return (
     <>
@@ -69,18 +97,24 @@ const defaultTheme = createTheme();
               id="email"
               label="Email Address"
               name="email"
+              type='text'
               autoComplete="email"
               autoFocus
+              value={email}
+              onChange={(e)=>setEmail(e.target.value)}
             />
             <TextField
               margin="normal"
               required
               fullWidth
+              type='password'
               name="password"
               label="Password"
-              type="password"
+           
               id="password"
               autoComplete="current-password"
+              value={password}
+              onChange={(e)=>setPassword(e.target.value)}
             />
            
             <Button

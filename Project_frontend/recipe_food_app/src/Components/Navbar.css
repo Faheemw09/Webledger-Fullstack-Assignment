@@ -1,6 +1,9 @@
 * {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+  text-decoration: none; 
+  
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
   }
+ 
   body{
     padding-top: 8vh; 
   }
@@ -43,7 +46,12 @@
     margin: auto;
     position: relative; /* Add this line to maintain a relative position */
   }
-  
+  h5{
+    color: black;
+  }
+  button{
+    color: black;
+  }
   .nav-items > h5 {
     font-size: 15px;
     color: black;
@@ -71,7 +79,12 @@ cursor: pointer;
     .menu-icon {
       display: block; /* Show the menu icon on small screens */
     }
-  
+    h5{
+      color: black;
+    }
+    button{
+      color: black;
+    }
      .nav-items {
       display: none;
       flex-direction: column;
@@ -103,7 +116,7 @@ cursor: pointer;
   
     .nav-items > h5 {
       font-size: 15px; /* Adjust font size for medium screens */
-      color: white;
+      color: black
     }
   
     .nav-items > button {

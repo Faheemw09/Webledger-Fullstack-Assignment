@@ -1,8 +1,8 @@
 import axios from "axios"
-import { PENDING_REQUEST, SUCCESS_REQUEST ,FAILURE_REQUEST} from "./ActionTypes"
+import { PENDING_REQUEST, SUCCESS_REQUEST ,FAILURE_REQUEST, ADDTOFAVT} from "./ActionTypes"
 
 
-const apiKey="33650e18c02747399042f1786c38c03e"
+const apiKey="e8d58da243d44215a53861285a0cf3d6"
 const url="https://api.spoonacular.com/recipes"
 
 
@@ -27,4 +27,26 @@ export const fetchRecipe=(page,query)=>(dispatch)=>{
     .catch((err)=>{
         dispatch({type:FAILURE_REQUEST})
     })
+}
+
+
+export const addFavt=(recipe,token)=>(dispatch)=>{
+
+
+  dispatch({type:PENDING_REQUEST})
+   axios.post(`https://back-api-gw25.onrender.com/savedrecipe/create`,recipe,{
+      headers: {
+          Authorization: `Bearer ${token}`
+        }
+  })
+  .then((res)=>{
+    
+    dispatch({type:ADDTOFAVT,payload:res.data})
+    console.log("favaction",res.data)
+  
+    alert("Recipe added Sucessfully")
+  }) .catch((err)=>{
+      dispatch({type:FAILURE_REQUEST})
+      alert("Failed to add recipe to favorites. Please try again.");
+  })
 }

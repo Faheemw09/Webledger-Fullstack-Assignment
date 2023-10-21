@@ -1,43 +1,71 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchRecipe } from '../Redux/RecipeRedux/Action';
-import './Recipe.css';
-import Navbar from '../Components/Navbar';
-import { Button, Input, InputGroup, InputRightElement, Spinner } from '@chakra-ui/react';
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useHistory, useLocation, useNavigate } from "react-router-dom"; // Import useHistory and useLocation
+import { addFavt, fetchRecipe } from "../Redux/RecipeRedux/Action";
+import "./Recipe.css";
+import Navbar from "../Components/Navbar";
+import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
+import useDebounce from "../Hooks/UseDebounce";
 
 const Recipe = () => {
   const dispatch = useDispatch();
   const recipes = useSelector((store) => store.Recipereducer.recipe);
-  const [page, setPage] = useState(1);
-  const [query, setQuery] = useState('');
-  const isLoading = useSelector((state) => state.Recipereducer.isLoading);
+  const [query, setQuery] = useState("");
+  const isLoading = useSelector((store) => store.Recipereducer.isLoading);
+  const token = useSelector((store) => store.Authreducer.token);
+  const favtlists = useSelector((store) => store.Recipereducer.favt);
+  const navigate = useNavigate(); // Access the history object
+  const location = useLocation(); // Access the location object
+
+  const queryParams = new URLSearchParams(location.search);
+  const pageParam = queryParams.get("page");
+  const page = pageParam ? parseInt(pageParam, 10) : 1;
 
   useEffect(() => {
-    dispatch(fetchRecipe(page, query))
+    dispatch(fetchRecipe(page, query));
   }, [page, query]);
 
   const debouncedQuery = useDebounce(query, 4000);
 
   useEffect(() => {
     if (debouncedQuery !== null) {
-      dispatch(fetchRecipe(page, debouncedQuery));
+      const newSearchParams = new URLSearchParams(location.search);
+      newSearchParams.set("page", "1"); // Reset page to 1 when changing the query
+      navigate({ search: newSearchParams.toString() });
+      dispatch(fetchRecipe(1, debouncedQuery));
     }
-  }, [page, debouncedQuery]);
+  }, [debouncedQuery]);
+
+  const handlefavt = (recipe) => {
+    dispatch(addFavt(recipe, token, navigate));
+
+    // console.log('Recipe added', recipe, token);
+  };
+
+  const goToPage = (newPage) => {
+    if (newPage >= 1) {
+      const newSearchParams = new URLSearchParams(location.search);
+      newSearchParams.set("page", newPage.toString());
+      navigate({ search: newSearchParams.toString() });
+    }
+  };
 
   return (
     <>
       <Navbar />
       <div className="recipe-list">
-        <div className='input'>
+        <div className="input">
           <input value={query} onChange={(e) => setQuery(e.target.value)} />
-          <div className='search-icon'>Search</div>
+          <div className="search-icon">Search</div>
         </div>
-        <div className='pagination'>
-          <button onClick={() => setPage(page - 1)} disabled={page === 1}>Prev</button>
+        <div className="pagination">
+          <button onClick={() => goToPage(page - 1)} disabled={page === 1}>
+            Prev
+          </button>
           <button>{page}</button>
-          <button onClick={() => setPage(page + 1)}>Next</button>
+          <button onClick={() => goToPage(page + 1)}>Next</button>
         </div>
-        <div className='cardss'>
+        <div className="cardss">
           {isLoading ? (
             <h1>Loading.............</h1>
           ) : (
@@ -45,6 +73,9 @@ const Recipe = () => {
               <div className="display_cards" key={recipe.id}>
                 <img src={recipe.image} alt={recipe.title} className="img5" />
                 <h2>{recipe.title}</h2>
+                <div className="icon" onClick={() => handlefavt(recipe)}>
+                  <FavoriteOutlinedIcon />
+                </div>
               </div>
             ))
           )}
@@ -55,20 +86,3 @@ const Recipe = () => {
 };
 
 export default Recipe;
-
-// Your useDebounce hook
-function useDebounce(value, delay) {
-  const [debouncedValue, setDebouncedValue] = useState(value);
-
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedValue(value);
-    }, delay);
-
-    return () => {
-      clearTimeout(handler);
-    };
-  }, [value, delay]);
-
-  return debouncedValue;
-}
