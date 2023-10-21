@@ -1,10 +1,14 @@
 # Food App
 
-![App Screenshot](screenshot.png)
+![App Screenshot](web.png)
 
 Food App is a web application that allows users to explore recipes, save their favorite recipes, and more. This README provides an overview of the app and its technologies.
-Deployment Links
-Frontend: The app is deployed on Vercel.
+## Deployment Links
+
+- **Frontend**: The app is deployed on [Vercel](https://recipe-food-app-lime.vercel.app/).
+
+- **Backend**: The backend is hosted on [Render](https://back-api-gw25.onrender.com/).
+
 
 Backend: The backend is hosted on Render.
 ## Table of Contents
@@ -48,8 +52,8 @@ Backend: The backend is hosted on Render.
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/yourusername/food-app.git
-   cd food-app
+   https://github.com/Faheemw09/Webledger-Fullstack-Assignment/tree/master
+   cd recipe_food_app
 
 
 npm install
