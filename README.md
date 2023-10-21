@@ -54,8 +54,8 @@ Backend: The backend is hosted on Render.
 
 ## npm install
 
-Start the App:
-## npm start
+## Start the App:
+ npm start
 The app will be available at http://localhost:3000.
 
 ## Features
