@@ -18,12 +18,8 @@ Backend: The backend is hosted on Render.
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
 - [Features](#features)
-- [Deployment Links](#deployment-links)
-- [Folder Structure](#folder-structure)
-- [Front-end Repository](#front-end-repository)
-- [Back-end Repository](#back-end-repository)
-- [Contributing](#contributing)
-- [License](#license)
+
+
 
 ## Technologies Used
 
