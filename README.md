@@ -61,7 +61,9 @@ Start the App:
 npm start
 The app will be available at http://localhost:3000.
 
-Features
+## Features
+
+
 Home Page: Displays featured recipes and provides navigation.
 
 Sign In/Sign Up: User authentication for saving favorite recipes.
