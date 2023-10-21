@@ -1,6 +1,6 @@
 # Food App
 
-![App Screenshot](file:///C:/Users/fahee/OneDrive/Desktop/web.png)
+
 
 Food App is a web application that allows users to explore recipes, save their favorite recipes, and more. This README provides an overview of the app and its technologies.
 ## Deployment Links
