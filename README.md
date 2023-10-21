@@ -47,14 +47,15 @@ Backend: The backend is hosted on Render.
 ### Installation
 
 1. **Clone the Repository**:
-   ```bash
+ 
    https://github.com/Faheemw09/Webledger-Fullstack-Assignment/tree/master
    cd recipe_food_app
 
 
-npm install
+## npm install
+
 Start the App:
-npm start
+## npm start
 The app will be available at http://localhost:3000.
 
 ## Features
